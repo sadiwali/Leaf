@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "xcCc+C7T48rZyvqxqPTUrzehWrj23L46fqb8++syIcVjAG+Re6OCHwFD38yYE2zZQtmkWhsXRYu6cLGDgPDKyg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sadiw\\Documents\\GitHub\\Leaf\\Leaf.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sadiw\\.nuget\\packages\\grasshopper\\6.0.18016.23451\\grasshopper.6.0.18016.23451.nupkg.sha512",
+    "C:\\Users\\sadiw\\.nuget\\packages\\rhinocommon\\6.0.18016.23451\\rhinocommon.6.0.18016.23451.nupkg.sha512"
+  ],
+  "logs": []
+}
