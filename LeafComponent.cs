@@ -115,11 +115,18 @@ namespace Leaf {
                     break;
                 } else if (rule[0].Contains("<") || rule[0].Contains(">")) {
                     // context sensitive rule
+
+                    
+
                     int indOfLeft = rule[0].IndexOf("<");
                     int indOfRight = rule[0].IndexOf(">");
 
+                    // condition before and after symbol
                     string before = indOfLeft == -1 ? null : rule[0].Substring(0, indOfLeft);
                     string after = indOfRight == -1 ? null : rule[0].Substring(indOfRight + 1);
+
+                    // before moving on further, check that character is truly in the context sensitive rule
+                    string cont_character = rule[0][indOfLeft + 1].ToString();
 
 
                     // string too short, rule does not apply
@@ -138,17 +145,17 @@ namespace Leaf {
 
                     // rule has both sides of context present
                     if (before != null && after != null) {
-                        if (prevIter.Substring(c - before.Length, before.Length + after.Length + 1) == before + character + after) {
+                        if (prevIter.Substring(c - before.Length, before.Length + after.Length + 1) == before + cont_character + after) {
                             toRet = rule[1];
                             break;
                         }
                     } else if (before != null) {
-                        if (prevIter.Substring(c - before.Length, before.Length + 1) == before + character) {
+                        if (prevIter.Substring(c - before.Length, before.Length + 1) == before + cont_character) {
                             toRet = rule[1];
                             break;
                         }
                     } else if (after != null) {
-                        if (prevIter.Substring(c, after.Length + 1) == character + after) {
+                        if (prevIter.Substring(c, after.Length + 1) == cont_character + after) {
                             toRet = rule[1];
                             break;
                         }
@@ -204,8 +211,7 @@ namespace Leaf {
 
         public override Guid ComponentGuid => new Guid("94996c1c-90b5-46da-a541-b8400c390e20");
     }
-
-    // completed
+    
     public class InstructionsComponent : GH_Component {
 
         public InstructionsComponent()
@@ -264,8 +270,8 @@ namespace Leaf {
 
         public override Guid ComponentGuid => new Guid("713ae280-7e52-11ec-90d6-0242ac120003");
     }
-
-    // completed
+    
+    // custom data type
     public class LeafGeometryData : Grasshopper.Kernel.Types.IGH_Goo {
 
         private string symbol;
@@ -646,7 +652,6 @@ namespace Leaf {
         public override Guid ComponentGuid => new Guid("3aa93db1-48fc-444f-89e4-c8d6364d8a0a");
     }
 
-    // completed
     public class GeometryComponent : GH_Component {
 
         public GeometryComponent()
@@ -726,9 +731,5 @@ namespace Leaf {
 
         public override Guid ComponentGuid => new Guid("866f12ba-7e53-11ec-90d6-0242ac120003");
     }
-
-
-
-
 }
 

@@ -9,3 +9,12 @@ C:\Users\sadiw\source\repos\Leaf\Leaf\obj\Debug\net48\Leaf.AssemblyInfo.cs
 C:\Users\sadiw\source\repos\Leaf\Leaf\obj\Debug\net48\Leaf.csproj.CoreCompileInputs.cache
 C:\Users\sadiw\source\repos\Leaf\Leaf\obj\Debug\net48\Leaf.gha
 C:\Users\sadiw\source\repos\Leaf\Leaf\obj\Debug\net48\Leaf.pdb
+C:\Users\sadiw\Documents\GitHub\Leaf\obj\Debug\net48\Leaf.csproj.AssemblyReference.cache
+C:\Users\sadiw\Documents\GitHub\Leaf\obj\Debug\net48\Leaf.Properties.Resources.resources
+C:\Users\sadiw\Documents\GitHub\Leaf\obj\Debug\net48\Leaf.csproj.GenerateResource.cache
+C:\Users\sadiw\Documents\GitHub\Leaf\obj\Debug\net48\Leaf.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sadiw\Documents\GitHub\Leaf\obj\Debug\net48\Leaf.AssemblyInfoInputs.cache
+C:\Users\sadiw\Documents\GitHub\Leaf\obj\Debug\net48\Leaf.AssemblyInfo.cs
+C:\Users\sadiw\Documents\GitHub\Leaf\obj\Debug\net48\Leaf.csproj.CoreCompileInputs.cache
+C:\Users\sadiw\Documents\GitHub\Leaf\obj\Debug\net48\Leaf.gha
+C:\Users\sadiw\Documents\GitHub\Leaf\obj\Debug\net48\Leaf.pdb

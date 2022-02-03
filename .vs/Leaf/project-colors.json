@@ -5,7 +5,12 @@
       "ProjectGuid": "b64f9a7e-36d4-4f38-9580-ee5164e070d7",
       "DisplayName": "Leaf",
       "ColorIndex": 0
+    },
+    "e878decb-2f49-4647-ab79-ad623c8e2a5c": {
+      "ProjectGuid": "e878decb-2f49-4647-ab79-ad623c8e2a5c",
+      "DisplayName": "Leaf",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }
