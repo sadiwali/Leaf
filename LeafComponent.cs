@@ -16,14 +16,12 @@ namespace Leaf {
         public string prevIter;
         public Random rand = new Random();
 
-        public LeafComponent()
-          : base("Leaf System", "LS",
-            "Produce a string using the L-system.",
-            "Leaf", "Main") {
-        }
+        public LeafComponent() : base("Leaf System", "LS",
+          "Produce a string using the L-system.",
+          "Leaf", "Main") { }
 
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager) {
-            
+
             pManager.AddTextParameter("Rules", "R", "Rules to apply.", GH_ParamAccess.list, "");
             pManager.AddTextParameter("Axiom", "A", "The starting character or characters.", GH_ParamAccess.item, "");
             pManager.AddIntegerParameter("Cycle", "i", "L-System strings can get very large very quickly. Your computer may not be able to handle high cycle values. It's a good idea to use a panel instead of a slider so you don't accidentally crash Grasshopper.", GH_ParamAccess.item, 0);
@@ -46,7 +44,6 @@ namespace Leaf {
             if (!DA.GetDataList(0, _rules)) return;
             DA.GetData(1, ref axiom);
             if (!DA.GetData(2, ref cycle)) return;
-
 
             // no rules
             if (_rules == null || _rules.Count == 0) {
@@ -107,7 +104,6 @@ namespace Leaf {
                 // if rule does not have right hand side, move on
                 if (rule.Length == 1) continue;
 
-
                 // identify the type of rule
                 if (rule[0].Length == 1) {
                     // simple replacement rule
@@ -115,8 +111,6 @@ namespace Leaf {
                     break;
                 } else if (rule[0].Contains("<") || rule[0].Contains(">")) {
                     // context sensitive rule
-
-                    
 
                     int indOfLeft = rule[0].IndexOf("<");
                     int indOfRight = rule[0].IndexOf(">");
@@ -127,7 +121,6 @@ namespace Leaf {
 
                     // before moving on further, check that character is truly in the context sensitive rule
                     string cont_character = rule[0][indOfLeft + 1].ToString();
-
 
                     // string too short, rule does not apply
                     if (before != null) {
@@ -211,24 +204,21 @@ namespace Leaf {
 
         public override Guid ComponentGuid => new Guid("94996c1c-90b5-46da-a541-b8400c390e20");
     }
-    
+
     public class InstructionsComponent : GH_Component {
 
-        public InstructionsComponent()
-          : base("Leaf Instructions", "LI",
-            "How to use Leaf String Rewriter.",
-            "Leaf", "Info") {
-        }
+        public InstructionsComponent() : base("Leaf Instructions", "LI",
+          "How to use Leaf String Rewriter.",
+          "Leaf", "Info") { }
 
-        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager) {
-        }
+        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager) { }
 
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager) {
             pManager.AddTextParameter("Instructions", "I", "Recognized symbols and what they do", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA) {
-            AddRuntimeMessage(GH_RuntimeMessageLevel.Remark, "Version 1.0.1");
+            AddRuntimeMessage(GH_RuntimeMessageLevel.Remark, "Version 1.1.0");
             // assign the output
             string outString = "";
             outString += "Turtle:\n";
@@ -239,7 +229,6 @@ namespace Leaf {
             outString += "turn right: +\n";
             outString += "move forward without placing block: _\n";
             outString += "all other symbols will cause the turtle to place a block and move forward 1 step.: _\n";
-
 
             outString += "\nBranching:\n";
             outString += "---------------\n";
@@ -270,7 +259,7 @@ namespace Leaf {
 
         public override Guid ComponentGuid => new Guid("713ae280-7e52-11ec-90d6-0242ac120003");
     }
-    
+
     // custom data type
     public class LeafGeometryData : Grasshopper.Kernel.Types.IGH_Goo {
 
@@ -278,8 +267,7 @@ namespace Leaf {
         private Brep brep;
         private Point3d[] points;
 
-        public LeafGeometryData() {
-        }
+        public LeafGeometryData() { }
 
         public LeafGeometryData(string s, Brep b, List<Point3d> p) {
             symbol = s;
@@ -290,28 +278,48 @@ namespace Leaf {
             }
         }
         public string Symbol {
-            get { return symbol; }
-            set { symbol = value; }
+            get {
+                return symbol;
+            }
+            set {
+                symbol = value;
+            }
         }
 
         public Brep Geometry {
-            get { return brep; }
-            set { brep = value; }
+            get {
+                return brep;
+            }
+            set {
+                brep = value;
+            }
         }
 
         public Point3d BL {
-            get { return points[0]; }
-            set { points[0] = value; }
+            get {
+                return points[0];
+            }
+            set {
+                points[0] = value;
+            }
         }
 
         public Point3d TL {
-            get { return points[1]; }
-            set { points[1] = value; }
+            get {
+                return points[1];
+            }
+            set {
+                points[1] = value;
+            }
         }
 
         public Point3d BR {
-            get { return points[2]; }
-            set { points[2] = value; }
+            get {
+                return points[2];
+            }
+            set {
+                points[2] = value;
+            }
         }
 
         public Plane OrientPlane {
@@ -321,7 +329,9 @@ namespace Leaf {
         }
 
         public double GetVoxelSize {
-            get { return Math.Abs(points[0].DistanceTo(points[1])); }
+            get {
+                return Math.Abs(points[0].DistanceTo(points[1]));
+            }
         }
 
         public Point3d Point {
@@ -353,15 +363,21 @@ namespace Leaf {
         }
 
         public string IsValidWhyNot {
-            get { return "Check your inputs."; }
+            get {
+                return "Check your inputs.";
+            }
         }
 
         public string TypeName {
-            get { return "Leaf Data"; }
+            get {
+                return "Leaf Data";
+            }
         }
 
         public string TypeDescription {
-            get { return "Some data"; }
+            get {
+                return "Some data";
+            }
         }
 
         public bool CastFrom(object source) {
@@ -408,7 +424,9 @@ namespace Leaf {
         }
 
         public TurtlePointer State {
-            get { return this.MemberwiseClone() as TurtlePointer; }
+            get {
+                return this.MemberwiseClone() as TurtlePointer;
+            }
             set {
                 this.point = value.Point;
                 this.bl = value.BL;
@@ -418,23 +436,35 @@ namespace Leaf {
         }
 
         public Point3d BL {
-            get { return bl; }
+            get {
+                return bl;
+            }
         }
         public Point3d TL {
-            get { return tl; }
+            get {
+                return tl;
+            }
 
         }
         public Point3d BR {
-            get { return br; }
+            get {
+                return br;
+            }
         }
 
         public Point3d Point {
-            get { return point; }
+            get {
+                return point;
+            }
         }
 
         public Double Angle {
-            get { return angle; }
-            set { angle = value; }
+            get {
+                return angle;
+            }
+            set {
+                angle = value;
+            }
         }
 
         public Plane OrientPlane {
@@ -444,7 +474,41 @@ namespace Leaf {
         }
 
         public double GetVoxelSize {
-            get { return this.vs; }
+            get {
+                return this.vs;
+            }
+        }
+
+        public Point3d[] CurveEnds() {
+            Vector3d vecA = tl - bl;
+            vecA.Unitize();
+            Vector3d vecB = br - bl;
+            vecB.Unitize();
+            Vector3d vecC = Rhino.Geometry.Vector3d.CrossProduct(vecA, vecB);
+            vecC.Unitize();
+            Vector3d vecForward = vecC * dist / 2;
+            Vector3d vecBackward = vecC * (dist * -1);
+
+            // transforms
+            var tDirForward = Rhino.Geometry.Transform.Translation(vecForward);
+            var tDirBackward = Rhino.Geometry.Transform.Translation(vecBackward);
+
+            // duplicate the center point
+            Point3d pForward = new Point3d(point);
+            Point3d pBackward = new Point3d(point);
+
+            // transform the points
+            //pForward.Transform(tDirForward);
+            pBackward.Transform(tDirBackward);
+
+            // array to return
+            Point3d[] toRet = new Point3d[2];
+
+            toRet[0] = pBackward;
+            toRet[1] = pForward;
+
+            return toRet;
+
         }
 
         public void Move() {
@@ -508,13 +572,11 @@ namespace Leaf {
         }
     }
 
-    public class TurtleComponent : GH_Component {
+    public class TurtleVoxelsComponent : GH_Component {
 
-        public TurtleComponent()
-          : base("Leaf Turtle", "LT",
-            "A 3D agent based drawing component based around the L-System.",
-            "Leaf", "Main") {
-        }
+        public TurtleVoxelsComponent() : base("Leaf Voxel Turtle", "LVT",
+          "A 3D agent based voxel drawing component based around the L-System.",
+          "Leaf", "Main") { }
 
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager) {
             pManager.AddTextParameter("Shape Code", "S", "L-System string to take in.", GH_ParamAccess.item, "");
@@ -542,14 +604,13 @@ namespace Leaf {
             GH_Number stepDistance = new GH_Number(1);
             List<LeafGeometryData> mD = new List<LeafGeometryData>();
 
-
             // reference the inputs to variables
             if (!DA.GetData(0, ref shapeCode)) return;
             if (!DA.GetData(1, ref voxelSize)) return;
             if (!DA.GetData(2, ref angle)) return;
             if (!DA.GetData(3, ref stepDistance)) return;
-            DA.GetDataList(4, mD);
 
+            DA.GetDataList(4, mD);
 
             /// make dictionary of geometries 
             IDictionary<string, int> geoDict = new Dictionary<string, int>();
@@ -566,9 +627,8 @@ namespace Leaf {
             TurtlePointer[] pointerStack = new TurtlePointer[500];
             int stackPointer = 0;
 
-            // list of breps to accumulate. Starts with 5000 slots (heavy memory)
+            // list of breps to accumulate. Starts with 5000 slots, adds another 5000 if filled
             List<Brep> boxes = new List<Brep>(5000);
-
 
             for (int i = 0; i < shapeCode.Length; i++) {
                 string c = shapeCode[i].ToString();
@@ -598,8 +658,8 @@ namespace Leaf {
                         stackPointer = 0;
                     }
                 } else {
+                    // move the pointer forward
                     TP.Move();
-
                     if (geoDict.ContainsKey(c)) {
                         // replace with geometry
                         boxes.Add(InsertGeometry(mD[geoDict[c]], TP));
@@ -607,7 +667,8 @@ namespace Leaf {
                         // replace with block
                         boxes.Add(CreateBlock(TP));
                     }
-
+                    
+                    
                 }
 
             }
@@ -621,7 +682,6 @@ namespace Leaf {
             Plane p = new Plane(tP.TL, tP.BL, tP.BR);
             Box b = new Box(p, new Interval(0, tP.GetVoxelSize), new Interval(0, tP.GetVoxelSize), new Interval(0, tP.GetVoxelSize));
             return b.ToBrep();
-
         }
 
         public Brep InsertGeometry(LeafGeometryData lD, TurtlePointer tP) {
@@ -652,13 +712,104 @@ namespace Leaf {
         public override Guid ComponentGuid => new Guid("3aa93db1-48fc-444f-89e4-c8d6364d8a0a");
     }
 
+    public class TurtleLineComponent : GH_Component {
+        // code will be optimized later
+        public TurtleLineComponent() : base("Leaf Line Turtle", "LLT",
+          "A 3D agent based line drawing component based around the L-System.",
+          "Leaf", "Main") { }
+
+        protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager) {
+            pManager.AddTextParameter("Shape Code", "S", "L-System string to take in.", GH_ParamAccess.item, "");
+            pManager.AddNumberParameter("Angle", "A", "Turn angle.", GH_ParamAccess.item, 90);
+            pManager.AddNumberParameter("Step Distance", "D", "Distance to move over for each line.", GH_ParamAccess.item, 1);
+            pManager[0].Optional = false;
+            pManager[1].Optional = true;
+            pManager[2].Optional = true;
+        }
+
+        protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager) {
+            pManager.AddLineParameter("Lines", "L", "The 3D representation of the L-System", GH_ParamAccess.list);
+        }
+
+        protected override void SolveInstance(IGH_DataAccess DA) {
+            // create variables that correspond to inputs
+            string shapeCode = "";
+            GH_Number angle = new GH_Number(90);
+            GH_Number stepDistance = new GH_Number(1);
+
+            // reference the inputs to variables
+            if (!DA.GetData(0, ref shapeCode)) return;
+            if (!DA.GetData(2, ref angle)) return;
+            if (!DA.GetData(3, ref stepDistance)) return;
+
+            // create turtle pointer
+            TurtlePointer TP = new TurtlePointer(0, 0, 0, stepDistance.Value, stepDistance.Value, angle.Value);
+
+            // create pointer stack limit to 500 steps of recursion. May increase this in the future
+            TurtlePointer[] pointerStack = new TurtlePointer[500];
+            int stackPointer = 0;
+
+            // list of curves to accumulate. Starts with 5000 slots, adds another 5000 if filled
+            List<Line> lines = new List<Line>(5000);
+
+            for (int i = 0; i < shapeCode.Length; i++) {
+                string c = shapeCode[i].ToString();
+                if (c == "^") {
+                    TP.PitchUp();
+                } else if (c == "/") {
+                    TP.PitchDown();
+                } else if (c == "-") {
+                    TP.TurnLeft();
+                } else if (c == "+") {
+                    TP.TurnRight();
+                } else if (c == "_") {
+                    TP.Move();
+                } else if (c == "[") {
+                    pointerStack[stackPointer] = TP.State;
+                    stackPointer++;
+                    // if this happens, throw an exception
+                    if (stackPointer >= pointerStack.Length) {
+                        stackPointer = pointerStack.Length - 1;
+                        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Stack overflow!");
+                        return;
+                    }
+                } else if (c == "]") {
+                    TP.State = pointerStack[stackPointer - 1];
+                    stackPointer--;
+                    if (stackPointer <= 0) {
+                        stackPointer = 0;
+                    }
+                } else {
+                    // move the pointer forward
+                    TP.Move();
+                    // any other symbol means place a curve
+                    lines.Add(CreateLine(TP));
+
+                }
+            }
+            // assign the output
+            DA.SetDataList(0, lines);
+        }
+
+        public Line CreateLine(TurtlePointer tP) {
+            Point3d[] curveEnds = tP.CurveEnds();
+            // construct a line
+            Line crv = new Line(curveEnds[0], curveEnds[1]);
+            return crv;
+        }
+
+        public override GH_Exposure Exposure => GH_Exposure.primary;
+
+        protected override System.Drawing.Bitmap Icon => Properties.Resources.turtleicon2.ToBitmap();
+
+        public override Guid ComponentGuid => new Guid("f8792a0b-67ba-4c61-bbd3-bbc4b60c1ff8");
+    }
+
     public class GeometryComponent : GH_Component {
 
-        public GeometryComponent()
-          : base("Leaf Geometry", "LG",
-            "Used to substitute symbols with geometry via the Leaf Turtle component.",
-            "Leaf", "Geometry") {
-        }
+        public GeometryComponent() : base("Leaf Geometry", "LG",
+          "Used to substitute symbols with geometry via the Leaf Turtle component.",
+          "Leaf", "Geometry") { }
 
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager) {
 
@@ -685,7 +836,6 @@ namespace Leaf {
             DA.GetData(0, ref symbol);
             DA.GetData(1, ref brep);
             DA.GetDataList(2, points);
-
 
             bool errored = false;
 
@@ -715,7 +865,6 @@ namespace Leaf {
 
             if (errored) return;
 
-
             // TODO check points for squraeness 
 
             // package data for sending
@@ -732,4 +881,3 @@ namespace Leaf {
         public override Guid ComponentGuid => new Guid("866f12ba-7e53-11ec-90d6-0242ac120003");
     }
 }
-
