@@ -739,8 +739,8 @@ namespace Leaf {
 
             // reference the inputs to variables
             if (!DA.GetData(0, ref shapeCode)) return;
-            if (!DA.GetData(2, ref angle)) return;
-            if (!DA.GetData(3, ref stepDistance)) return;
+            if (!DA.GetData(1, ref angle)) return;
+            if (!DA.GetData(2, ref stepDistance)) return;
 
             // create turtle pointer
             TurtlePointer TP = new TurtlePointer(0, 0, 0, stepDistance.Value, stepDistance.Value, angle.Value);
